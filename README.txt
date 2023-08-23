@@ -36,5 +36,9 @@ Next Steps:
     Updates - There is a bug with updates where it will not complete the update unless a file is selected in the images section. It currently does not autofill the default entry into the input box. 
               I believe it's an issue with the first set of if statments in the update_upload.php file
 
+Included is the "suppliers.sql" file which is the structure export from phpmyadmin
+edit.sql is solely for editing and playing around with SQL commands
+
+
     
     
