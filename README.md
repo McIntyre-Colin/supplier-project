@@ -13,8 +13,11 @@ For the sake of visual clarity, all of the CRUD operations have been seperated o
 
 ## File Explaination
 **config.php** handles the connection to the MySQL database.
+
 **index.php** is the main landing page for the project. As this project is a dashboard for suppliers, **index.php** takes the user directly to the page where all product information is displayed.
+
 **suppliers.sql** is the phpmyadmin dump of the database structure and set up.
+
 **img** is the directory of screenshots so that they will appear in the README.md
 
 ## Orienting Yourself in the Code
