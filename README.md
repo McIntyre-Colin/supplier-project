@@ -3,7 +3,7 @@ Header Info:
     Developer - Colin McIntyre
 
 Application Info:
-    Software used - PHP, SQL (MySQL), CSS, HTML, GIT, Apache2, bash
+    Software used - PHP, SQL (MySQL), CSS, HTML, GIT, Apache2, bash, JS
     Resources - https://www.tutorialrepublic.com/php-tutorial/php-mysql-connect.php
                 Used this as a guide for connecting mysql database as well as a PHP guide for crud applications
 
@@ -33,8 +33,6 @@ Next Steps:
                    a sql "where" statement is used to pull only the products created by that user.
     Images - Currently the database is set up to have a many:1 relationship for images. One product can have many images. I have yet to implement that in the code 
              specifically because I'm having trouble updating the existing image entry and I do not want to complicate matters further, but the DB infrastructure is there.
-    Updates - There is a bug with updates where it will not complete the update unless a file is selected in the images section. It currently does not autofill the default entry into the input box. 
-              I believe it's an issue with the first set of if statments in the update_upload.php file
 
 Included is the "suppliers.sql" file which is the structure export from phpmyadmin
 edit.sql is solely for editing and playing around with SQL commands

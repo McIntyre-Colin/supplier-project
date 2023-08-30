@@ -3,7 +3,7 @@
   
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -30,22 +30,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
-                        <h2 class="pull-left">Product Details  </h2>
-                        <a href="./Views/customer_index.php" class="btn btn-secondary pull-center space-left"><i class="fa"></i> <style>.space-left {margin-left : 10px} </style>Customer View</a>
-                        <a href="./Views/create_product.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Product</a>
+                        <h2 class="pull-left">Products for Sale</h2>
+                        <a href="../index.php" class="btn btn-secondary pull-right"><i class="fa"></i>Supplier View</a>
                     </div>
                     <?php
                     // Include config file
-                    include "config.php";
+                    include "../config.php";
+                    $targetDir = "../uploads/";
         
                     //Product Query
                     $sql = "SELECT * FROM products";
+                    $imgSql = "SELECT * FROM images where product_id = ?";
                     if($result = mysqli_query($conn, $sql)){
                         if(mysqli_num_rows($result) > 0){
+
                             echo '<table class="table table-bordered table-striped">';
                                 echo "<thead>";
                                     echo "<tr>";
-                                        echo "<th>#</th>";
+                                        echo "<th>Image</th>";
                                         echo "<th>Name</th>";
                                         echo "<th>Description</th>";
                                         echo "<th>Action</th>";
@@ -54,21 +56,32 @@
                                 echo "</thead>";
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
+                                    $param_id = $row['id'];
+                                    //Image pull
+                                    $imgStmt = mysqli_prepare($conn, $imgSql);
+                                    mysqli_stmt_bind_param($imgStmt, "i", $param_id);
+                                    mysqli_stmt_execute($imgStmt);
+                                    $imgResult = mysqli_stmt_get_result($imgStmt); 
+                                    
+                                    $imgRow = mysqli_fetch_array($imgResult, MYSQLI_ASSOC);
+                                    $imgName = $imgRow["file_name"];
+
+                                    $targetFilePath = $targetDir . $imgName;
+
                                     echo "<tr>";
-                                        echo "<td>" . $row['id'] . "</td>";
+                                        echo "<td> <img src=" . $targetFilePath . " height='50' width = '50'> </td>";
                                         echo "<td>" . $row['name'] . "</td>";
                                         echo "<td>" . $row['description'] . "</td>";
-                                        
                                         echo "<td>";
-                                            echo '<a href="./Views/read_product.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                            echo '<a href="./Views/update_product.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                            echo '<a href="./Views/delete_product.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="product_view.php?id='. $row['id'] .'" class="mr-3" title="View Product" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="" class="mr-3" title="Add to Cart" data-toggle="tooltip"><span class="fa fa-shopping-cart"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
                             // Free result set
+                            // Frees the memory associated with the result
                             mysqli_free_result($result);
                         } else{
                             echo '<div class="alert alert-danger"><em>No records were found.</em></div>';

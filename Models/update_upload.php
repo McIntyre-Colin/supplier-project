@@ -2,7 +2,7 @@
  
 $statusMsg = '';
 // File upload directory 
-$targetDir = "uploads/"; 
+$targetDir = "../uploads/"; 
 
 // Processing form data when form is submitted
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -19,6 +19,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Allow certain file formats 
         $allowTypes = array('jpg','png','jpeg'); 
         if(in_array($fileType, $allowTypes)){ 
+
+        //Allows for new pictures to be uploaded
+        $result = move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
         // Prepare an update statement
         $sql = "UPDATE images SET file_name=? WHERE product_id=?";
          
@@ -33,7 +36,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($imgStmt)){
                 // Records created successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: ../index.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -62,20 +65,21 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($imgStmt)){
-                $result = mysqli_stmt_get_result($imgStmt);
+                $imgResult = mysqli_stmt_get_result($imgStmt);
                 
     
-                if(mysqli_num_rows($result) == 1){
+                if(mysqli_num_rows($imgResult) == 1){
                     /* Fetch result row as an associative array. Since the result set
                     contains only one row, we don't need to use while loop */
-                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                    $imgRow = mysqli_fetch_array($imgResult, MYSQLI_ASSOC);
                     
                     // Retrieve individual field value
-                    $imgName = $row["file_name"];
-                    $product_id = $row["product_id"];
+                    $imgName = $imgRow["file_name"];
+                    $product_id = $imgRow["product_id"];
                     $targetFilePath = $targetDir . $imgName;
                     $imgCheck = 1;
-                } else{
+                } 
+                else{
                     // Prepare all info such that the update file still runs
                     $targetFilePath ="";
                     $imgName = "";

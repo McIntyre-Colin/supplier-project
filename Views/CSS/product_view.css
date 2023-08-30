@@ -1,0 +1,43 @@
+
+.wrapper{
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+.title {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.product-name {
+    font-size: 24px;
+}
+
+.image {
+
+}
+
+.product-description{
+    font-size: 16px;
+}
+
+.product-description label{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.product-price{
+
+}
+.product-price label{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.product-in-stock{
+
+}
+.product-in-stock label{
+    font-weight: bold;
+    font-size: 24px;
+}
+

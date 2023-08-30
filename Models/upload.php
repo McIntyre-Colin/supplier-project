@@ -1,8 +1,9 @@
 <?php 
  
 $statusMsg = ''; 
+$img_err = '';
 // File upload directory 
-$targetDir = "uploads/"; 
+$targetDir = "../uploads/"; 
 
 
 $product_id = mysqli_insert_id($conn);
@@ -42,17 +43,19 @@ $product_id = mysqli_insert_id($conn);
                     echo "Oops! Something went wrong. Please try again later.";
                 }
             }
-            echo "this is the sql statement $stmt";
             // Close statement
             mysqli_stmt_close($stmt);
         }else{
             echo "eek it did not work";
         }
+    } else {
+        $img_err = "Please enter a valid file type .jpg .png .jpeg";
     }
 }
  
 // Display status message 
 echo $statusMsg; 
+return $img_err;
 
 
 ?>

@@ -1,0 +1,20 @@
+Customer Experience:
+-Readv page where they can see the products
+-Individual product page where they see the info and have a add to cart option
+-Cart page where they can check out 
+-Success popup and return to main page
+
+
+-subtract the number purchased from the supplier product database
+
+-How to handle a cart moment. JS? 
+
+-REFACTOR INTO MVC
+- starting with models
+- seperating out all of the SQL code from the views
+CREATE is done
+READ is DONE
+UPDATE DONE
+DELETE DONE
+
+make photos actually update
