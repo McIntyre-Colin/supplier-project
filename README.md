@@ -1,12 +1,32 @@
-Header Info:
-    Project - Supplier Dashboard
-    Developer - Colin McIntyre
+# Supplier Dashboard
+This project is designed to demonstrate proficiency with the LAMP stack. It allowes suppliers/sellers to create items and have them entered into a database. There is also an option for a consumer view and the consumer functionality is built such that it could be expanded in the future
 
-Application Info:
+## Software Used 
     Software used - PHP, SQL (MySQL), CSS, HTML, GIT, Apache2, bash, JS
     Resources - https://www.tutorialrepublic.com/php-tutorial/php-mysql-connect.php
                 Used this as a guide for connecting mysql database as well as a PHP guide for crud applications
 
+## File Structure
+    The code is organized into a standard MCV format. Models handle database operations, Controllers handle data validation and all the business logic to ensure the models are getting the correct information, and the Views are the HTML and CSS files for each landing page.
+
+    For the sake of visual clarity, all of the CRUD operations have been seperated out into their own files. In practice they would be in one file and broken down into seperate functions. Currently there is no seperation for files serving the supplier and the customer as I did not want to have a lot of file trees, however it would be a trivial matter to create a new set of MVC directories in a "customer" directory.
+
+## File Explaination
+    **config.php** handles the connection to the MySQL database.
+    **index.php** is the main landing page for the project. As this project is a dashboard for suppliers, **index.php** takes the user directly to the page where all product information is displayed.
+    **suppliers.sql** is the phpmyadmin dump of the database structure and set up.
+
+## Orienting Yourself in the Code
+    Everything begins in **index.php**. From there the user has the option to perform any CRUD operation. Their selection will send them to the View for that specific operation. The Controller for that operation will immediatly be triggered as well.
+    ``` php
+        include "../config.php";
+        require "../Controllers/read_product.php";
+    ```
+    The controller will then go about sending or reviecing data from the database by calling functions from the pertanant Model file based on the actions of the user. When the operation is complete the user will be redirected (or prompted to go) to the main landing page, **index.php**.
+
+    Since all CRUD operations follow the same schema, this process is identical across all parts of the codebase.
+
+## Image Uploading and Updating
     
 Progress:
 It took quite some time to get up to speed with PHP and MySQL as this was my first time working with both Softwares.
