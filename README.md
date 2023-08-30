@@ -116,11 +116,15 @@ Getting the cart feature up and running is next on the agenda. It will involve a
 Tables that will be needed:
 
 **STATIC**
+
 "order_items" - pivot table containing an order ID and product ID
+
 "order_details" - table combining customer information and info from "order_items"
 
 **SESSION**
+
 "shopping_session" - table containing customer ID, total price. 
+
 "item_in_cart" - pivot table linking products currently in the cart and the session (user)
 
     
