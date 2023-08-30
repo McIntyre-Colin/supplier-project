@@ -70,12 +70,12 @@ ALTER TABLE `images`
 The images table is set up such that it can be a Many:1 relationship meaning that, in future PRs, suppliers could upload multiple photos for a carousel. This is an example of coding with the future in mind. It's also important to note that the images will be deleted when/if the product is deleted. Also implementable would be a soft delete. For that an extra field would be included in the tables indicating whether or not the image or product or both have been deleted. Not implemented here as to show all CRUD operations.
 
 ## Visuals 
-**Supplier Dashboard**
+### **Supplier Dashboard**
 ![Supplier Home](./img/supplier-home.png)
 The icons in the "Action" Column link to the "Read" "Update" and "Delete" views respectively.
 They are part of the bootstrap package.
 
-**Create a Product**
+### **Create a Product**
 ![Create Product](./img/create-product.png)
 
 
