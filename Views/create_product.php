@@ -3,7 +3,6 @@
 // Include config file
 // Refactored into MVC format (this is the view)
 include "../config.php";
-require "../Models/create_product.php";
 require "../Controllers/create_product.php";
 ?>
 <!DOCTYPE html>

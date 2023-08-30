@@ -2,61 +2,72 @@
 This project is designed to demonstrate proficiency with the LAMP stack. It allowes suppliers/sellers to create items and have them entered into a database. There is also an option for a consumer view and the consumer functionality is built such that it could be expanded in the future
 
 ## Software Used 
-    Software used - PHP, SQL (MySQL), CSS, HTML, GIT, Apache2, bash, JS
-    Resources - https://www.tutorialrepublic.com/php-tutorial/php-mysql-connect.php
-                Used this as a guide for connecting mysql database as well as a PHP guide for crud applications
+Software used - PHP, SQL (MySQL), CSS, HTML, GIT, Apache2, bash, JS
+Resources - https://www.tutorialrepublic.com/php-tutorial/php-mysql-connect.php
+            Used this as a guide for connecting mysql database as well as a PHP guide for crud applications
 
 ## File Structure
-    The code is organized into a standard MCV format. Models handle database operations, Controllers handle data validation and all the business logic to ensure the models are getting the correct information, and the Views are the HTML and CSS files for each landing page.
+The code is organized into a standard MCV format. Models handle database operations, Controllers handle data validation and all the business logic to ensure the models are getting the correct information, and the Views are the HTML and CSS files for each landing page.
 
-    For the sake of visual clarity, all of the CRUD operations have been seperated out into their own files. In practice they would be in one file and broken down into seperate functions. Currently there is no seperation for files serving the supplier and the customer as I did not want to have a lot of file trees, however it would be a trivial matter to create a new set of MVC directories in a "customer" directory.
+For the sake of visual clarity, all of the CRUD operations have been seperated out into their own files. In practice they would be in one file and broken down into seperate functions. Currently there is no seperation for files serving the supplier and the customer as I did not want to have a lot of file trees, however it would be a trivial matter to create a new set of MVC directories in a "customer" directory.
 
 ## File Explaination
-    **config.php** handles the connection to the MySQL database.
-    **index.php** is the main landing page for the project. As this project is a dashboard for suppliers, **index.php** takes the user directly to the page where all product information is displayed.
-    **suppliers.sql** is the phpmyadmin dump of the database structure and set up.
+**config.php** handles the connection to the MySQL database.
+**index.php** is the main landing page for the project. As this project is a dashboard for suppliers, **index.php** takes the user directly to the page where all product information is displayed.
+**suppliers.sql** is the phpmyadmin dump of the database structure and set up.
+**img** is the directory of screenshots so that they will appear in the README.md
 
 ## Orienting Yourself in the Code
-    Everything begins in **index.php**. From there the user has the option to perform any CRUD operation. Their selection will send them to the View for that specific operation. The Controller for that operation will immediatly be triggered as well.
-    ```php
-        include "../config.php";
-        require "../Controllers/read_product.php";
-    ```
-    The controller will then go about sending or reviecing data from the database by calling functions from the pertanant Model file based on the actions of the user. When the operation is complete the user will be redirected (or prompted to go) to the main landing page, **index.php**.
+Everything begins in **index.php**. From there the user has the option to perform any CRUD operation. Their selection will send them to the View for that specific operation. The Controller for that operation will immediatly be triggered as well.
+For example in **Views/read_product.php**:
+```php
+    include "../config.php";
+    require "../Controllers/read_product.php";
+```
+The controller will then go about sending or reviecing data from the database by calling functions from the pertanant Model file based on the actions of the user. When the operation is complete the user will be redirected (or prompted to go) to the main landing page, **index.php**.
 
-    Since all CRUD operations follow the same schema, this process is identical across all parts of the codebase.
+Since all CRUD operations follow the same schema, this process is identical across all parts of the codebase.
 
 ## Image Uploading and Updating
-    
-Progress:
-It took quite some time to get up to speed with PHP and MySQL as this was my first time working with both Softwares.
-And getting my environment set up was a fun and challenging process as well. Specifically getting phpmyadmin to have the correct permissions.
-The guide above was very useful for providing a framework within to operate and adapt for this specific project.
-A main focus of the design was adaptability and allowing for parameters and data to be changed easily if that is what 
-the group decided to go with. Additionally I tried to use clear varaible names and add comments wto describe code blocks.
-A useful development tool for me was the use of echo statements. They allowed to me see where in the code problems were arising,
-and to check what values were actually being stored and transmitted. These instances have been removed for code legibility. 
-In the future I would use a PHP debugger to make the dev process a little bit smoother.
+Images are stored and accessed in the **uploads** directory while the file name is stored in the images table. This is because it would be grossly inefficient to save images in the database. Image uploads are handled by the **uploads.php** file found in the **Models** directory, and image updating is handled by **update_upload.php** which is also found in that directory. 
 
-Current functionality of the Application allows suppliers to create and upload a product with the following information:
--Name of the product
--Product Description
--Price of the product
--Number of units for the product
--Image(s) for the product
+They are seperated because of how updates are performed. The SQL "UPDATE" command is used when a supplier wishes to change the products image. This is done in place of combining "DELETE" and "CREATE". If a refactor were to happen for this portion of the code it would be changed to the later method which would allow for more code to be shared across use cases.
 
-The user can also view and update and delete product information.
-Some error checking has been implemented, currently the error checking for the images is non-existent and that has caused some problems during the update process.
+## Database Information
+MySQL is the database being used in conjunction with phpmyadmin simply for rapid access and efficiency. There are currently two tables in the database: One for products, and one for images. 
+**Products**
+```sql 
+-- The info being tracked in the products database
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `number_of_units` int NOT NULL,
+  `price` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
-Next Steps:
-    Supplier IDs - With the addition of a users table where suppliers have their own ID it would be a trivial matter to add a home page for the suppliers where
-                   a sql "where" statement is used to pull only the products created by that user.
-    Images - Currently the database is set up to have a many:1 relationship for images. One product can have many images. I have yet to implement that in the code 
-             specifically because I'm having trouble updating the existing image entry and I do not want to complicate matters further, but the DB infrastructure is there.
+**Images**
+```sql
+-- Info being tracked for images
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(255) NOT NULL,
+  `product_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `images_ibfk_1` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-Included is the "suppliers.sql" file which is the structure export from phpmyadmin
-edit.sql is solely for editing and playing around with SQL commands
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
+```
 
+The images table is set up such that it can be a Many:1 relationship meaning that, in future PRs, suppliers could upload multiple photos for a carousel. This is an example of coding with the future in mind. It's also important to note that the images will be deleted when/if the product is deleted. Also implementable would be a soft delete. For that an extra field would be included in the tables indicating whether or not the image or product or both have been deleted. Not implemented here as to show all CRUD operations.
+
+## Visuals 
+**Supplier Dashboard**
+![Supplier View](./img/supplier-home.png)
 
     
     
