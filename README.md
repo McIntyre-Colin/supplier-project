@@ -74,32 +74,43 @@ They are part of the bootstrap package.
 **Create a Product**
 ![Create Product](./img/create-product.png)
 
+
 **Supplier View of a Product**
 ![Supplier View](./img/read-page.png)
 
+
 **Update a Product**
 ![Update Product](./img/update-page.png)
+
 The image will only be changed if the user clicks the "Change Image" button and actually selects a new image.
+
 
 
 **Delete a Product**
 ![Delete](./img/delete.png)
 ![After Delete](./img/post-delete.png)
+
 Shows Supplier Dashboard after a successful delete operation.
+
 
 
 **Customer Dashboard**
 ![Customer Dash](./img/customer-home.png)
+
 Cart Icons are for features which will be implemented in the future.
+
 
 
 **Customer View of a Product**
 ![Customer View](./img/customer-product-view.png)
+
 The dropdown menu allows for users to select a number of products that they would like to purchase. Then Java Script will update the DOM to reflect the users choice.
+
 
 ## Roadmap
 Getting the cart feature up and running is next on the agenda. It will involve a few new tables in the database some handling session data and others handling processed data. 
 Tables that will be needed:
+
 **STATIC**
 "order_items" - pivot table containing an order ID and product ID
 "order_details" - table combining customer information and info from "order_items"
