@@ -18,7 +18,7 @@ This project is designed to demonstrate proficiency with the LAMP stack. It allo
 
 ## Orienting Yourself in the Code
     Everything begins in **index.php**. From there the user has the option to perform any CRUD operation. Their selection will send them to the View for that specific operation. The Controller for that operation will immediatly be triggered as well.
-    ``` php
+    ```php
         include "../config.php";
         require "../Controllers/read_product.php";
     ```
