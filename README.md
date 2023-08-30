@@ -35,6 +35,7 @@ They are seperated because of how updates are performed. The SQL "UPDATE" comman
 
 ## Database Information
 MySQL is the database being used in conjunction with phpmyadmin simply for rapid access and efficiency. There are currently two tables in the database: One for products, and one for images. 
+
 **Products**
 ```sql 
 -- The info being tracked in the products database
