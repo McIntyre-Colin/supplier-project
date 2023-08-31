@@ -35,7 +35,9 @@
                     </div>
                     <?php
                     // Include config file
-                    include "../config.php";
+                    require "../config.php";
+
+                    // Establishing the path to the saved images
                     $targetDir = "../uploads/";
         
                     //Product Query

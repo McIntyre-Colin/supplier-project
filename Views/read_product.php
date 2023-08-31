@@ -1,5 +1,5 @@
 <?php
-include "../config.php";
+require "../config.php";
 require "../Controllers/read_product.php";
 ?>
 
@@ -18,7 +18,6 @@ require "../Controllers/read_product.php";
 </head>
 <body>
     <div class="wrapper">
-    <h1>HELLO READ PAGE</h1>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

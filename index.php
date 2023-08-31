@@ -36,9 +36,11 @@
                     </div>
                     <?php
                     // Include config file
-                    include "config.php";
+                    // Globally using require for essential DB connections
+                    require "config.php";
         
                     //Product Query
+                    //As this is generating the HTML for the page I didnt seperate it out into MVC
                     $sql = "SELECT * FROM products";
                     if($result = mysqli_query($conn, $sql)){
                         if(mysqli_num_rows($result) > 0){

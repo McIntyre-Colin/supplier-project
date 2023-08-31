@@ -4,7 +4,7 @@
 // Process delete operation after confirmation
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Include config file
-    include "../config.php";
+    require "../config.php";
     require "../Models/delete_product.php";
 
     delete_product($conn);

@@ -1,6 +1,6 @@
 <?php
 // Include required files (yeehaw, reusing code blocks :D)
-include "../config.php";
+require "../config.php";
 require "../Controllers/read_product.php";
 
 
@@ -65,6 +65,7 @@ require "../Controllers/read_product.php";
         </div>
     </div>
 </body>
+<!-- JS for updating the Number of units the consumer wishes to add to cart -->
 <script>
     function updateQuantity() {
       var value = document.getElementById("quantity").value;

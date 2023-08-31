@@ -1,7 +1,7 @@
 <?php
 //View for the delete
 //Necessary File paths 
-include "../config.php";
+require "../config.php";
 require "../Controllers/delete_product.php";
 ?>
 
@@ -20,7 +20,6 @@ require "../Controllers/delete_product.php";
 </head>
 <body>
     <div class="wrapper">
-    <h1>HELLO DELETE PAGE</h1>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

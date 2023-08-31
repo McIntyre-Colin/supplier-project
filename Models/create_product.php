@@ -4,8 +4,9 @@
 function create_product($conn, $name, $description, $price, $number_of_units)
     {
         $sql = "INSERT INTO products (name, description, number_of_units, price) VALUES (?, ?, ?, ?)";
-        echo "this is the sql statement $sql";
-        echo "These are the variables enetered $variables";
+        //  this is the sql statement $sql;
+
+        // Using prepare to protect against sql injections
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ssis", $param_name, $param_description, $param_number_of_units, $param_price);

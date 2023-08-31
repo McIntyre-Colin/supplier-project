@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3">Invalid Request</h2>
-                    <div class="alert alert-danger">WEEWOOWEEWOO not allowed <a href="index.php" class="alert-link">go back</a> try again.</div>
+                    <div class="alert alert-danger">WEEWOOWEEWOO not allowed <a href="../index.php" class="alert-link">go back</a> try again.</div>
                 </div>
             </div>        
         </div>

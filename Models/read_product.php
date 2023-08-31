@@ -7,7 +7,7 @@ function read_product($conn, $id)
     $targetDir = "../uploads/"; 
     $imgCheck = 0;
 
-    // Prepare a select statement
+    // Prepare a select statement for both tables
     $sql = "SELECT * FROM products WHERE id = ?";
     $img = "SELECT * FROM images WHERE product_id = ?";
 
@@ -65,7 +65,7 @@ function read_product($conn, $id)
     // Close statement
     mysqli_stmt_close($stmt);
 
-
+    // Preparing the row array so that the controller gets all necessary information
     $row['targetFilePath'] = $targetFilePath;
     $row['imgCheck'] = $imgCheck;
     return $row;

@@ -1,4 +1,5 @@
 <?php
+// Handles the actual update process
 function update_product($conn, $id, $name, $description, $price, $number_of_units)
     {
          // Prepare an insert statement
@@ -20,7 +21,8 @@ function update_product($conn, $id, $name, $description, $price, $number_of_unit
                  // Records created successfully. Redirect to landing page
                  echo "records updated correctly";
                  // Prepare the update for the image file if the user chooses to do so
-                 include "../Models/update_upload.php";
+                 require "../Models/update_upload.php";
+                 header("location: ../index.php");
                  exit();
              } else{
                  echo "Oops! Something went wrong. Please try again later.";
@@ -33,7 +35,7 @@ function update_product($conn, $id, $name, $description, $price, $number_of_unit
  
     }
 
-
+// Effectively funcitons as a different read so all relevant and currrent data can be automatically entered into the fields
 function get_product_info($conn, $id)
     {
         // Prepare a select statement
@@ -62,6 +64,7 @@ function get_product_info($conn, $id)
                     $price = $row["price"];
                    
                     // Prepare to update the image
+                    // Seperate model to update the image
                     require "../Models/update_upload.php";
                 
                 } else{
@@ -78,7 +81,7 @@ function get_product_info($conn, $id)
          mysqli_stmt_close($stmt);
      
     
-
+    // Preparing all the data in the row array to ensure all relevant information gets passed to the controller
     $row['targetFilePath'] = $targetFilePath;
     $row['imgCheck'] = $imgCheck;
     $row['imgName'] = $imgName;

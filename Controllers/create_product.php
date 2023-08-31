@@ -1,5 +1,5 @@
 <?php
-include "../config.php";
+require "../config.php";
 require_once "../Models/create_product.php";
 
 // Define variables and initialize with empty values

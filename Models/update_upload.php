@@ -108,7 +108,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     }  else{
         echo "are we in the failed statement?";
         // URL doesn't contain id parameter. Redirect to error page
-        header("location: error.php");
+        header("location: ../Views/error.php");
         exit();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 // Required Files
-include "../config.php";
+require "../config.php";
 require "../Models/update_product.php";
 
 // Define variables and initialize with empty values
@@ -19,6 +19,7 @@ $image_err = "";
 $number_of_units_err = "";
  
 // Processing form data when form is submitted
+// Error handleing on the backend as to protect against JS shenanigans
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Get hidden input value
     $id = $_POST["id"];

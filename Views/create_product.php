@@ -2,7 +2,7 @@
 <?php
 // Include config file
 // Refactored into MVC format (this is the view)
-include "../config.php";
+require "../config.php";
 require "../Controllers/create_product.php";
 ?>
 <!DOCTYPE html>
@@ -22,7 +22,6 @@ require "../Controllers/create_product.php";
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
-            <h1>HELLO CREATE PAGE</h1>
                 <div class="col-md-12">
                     <h2 class="mt-5">Create Product Record</h2>
                     <p>Please fill this form and submit to add your product to the database.</p>
@@ -31,6 +30,7 @@ require "../Controllers/create_product.php";
                             <label>Name</label>
                             <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
                             <span class="invalid-feedback"><?php echo $name_err;?></span>
+                            <!-- Using bootstrap form contol errors to create popups if the user enters invalid data -->
                         </div>
                         <div class="form-group">
                             <label>Description</label>

@@ -1,6 +1,6 @@
 <?php
 // Include Required files
-include "../config.php";
+require "../config.php";
 require "../Controllers/update_product.php";
 
 ?>
@@ -20,12 +20,12 @@ require "../Controllers/update_product.php";
 </head>
 <body>
     <div class="wrapper">
-    <h1>HELLO UPDATE PAGE</h1>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mt-5">Update Record</h2>
                     <p>Please edit the input values and submit to update the PRODUCT record.</p>
+                    <!-- html special characters to prevent cross site scripting -->
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                             <label>Name</label>
